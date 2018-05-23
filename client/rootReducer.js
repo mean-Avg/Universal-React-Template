@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import {testReducer} from './containers/DispatchTester/storeMods';
-​
+import { testReducer } from './containers/DispatchTester/storeMods';
+
 const rootReducer = combineReducers({
-    testReducer
-})
-​
+	count: testReducer
+});
+
 export default rootReducer;
