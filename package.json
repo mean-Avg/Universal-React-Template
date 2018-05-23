@@ -1,37 +1,41 @@
 {
-	"name": "universal-react-template",
-	"version": "1.0.0",
-	"description": "universal react template with redux store, HMR and server side render on webpack 4",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"webpack": "webpack --mode none --config webpack.config.js",
-		"start": "npm run webpack && nodemon server/server.js"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/mean-Avg/Universal-React-Template.git"
-	},
-	"author": "Aditya Gupta",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/mean-Avg/Universal-React-Template/issues"
-	},
-	"homepage": "https://github.com/mean-Avg/Universal-React-Template#readme",
-	"dependencies": {
-		"express": "^4.16.3"
-	},
-	"devDependencies": {
-		"babel-loader": "^7.1.4",
-		"babel-preset-react": "^6.24.1",
-		"html-webpack-plugin": "^3.2.0",
-		"nodemon": "^1.17.5",
-		"prop-types": "^15.6.1",
-		"react": "^16.3.2",
-		"react-dom": "^16.3.2",
-		"react-redux": "^5.0.7",
-		"redux": "^4.0.0",
-		"webpack": "^4.8.3",
-		"webpack-cli": "^2.1.4"
-	}
+  "name": "universal-react-template",
+  "version": "1.0.0",
+  "description": "universal react template with redux store, HMR and server side render on webpack 4",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack --mode none --config webpack.config.js",
+    "start": "npm run webpack && node server/server.js",
+	"prettier": "prettier --write client/**/*.js client/**/*.jsx server/*",
+	"lint": "eslint client/** server/**"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mean-Avg/Universal-React-Template.git"
+  },
+  "author": "Aditya Gupta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mean-Avg/Universal-React-Template/issues"
+  },
+  "homepage": "https://github.com/mean-Avg/Universal-React-Template#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "babel-loader": "^7.1.4",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^4.19.1",
+    "eslint-plugin-react": "^7.8.2",
+    "html-webpack-plugin": "^3.2.0",
+    "prettier": "^1.12.1",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.4"
+  }
 }

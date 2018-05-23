@@ -7,5 +7,6 @@ const port = 3000;
 app.use(express.static(path.resolve(__dirname, '../dist')));
 
 app.listen(port, () => {
-	console.log(`app running at ${port}`);
+  // eslint-disable-next-line
+  console.log(`app running at ${port}`);
 });
