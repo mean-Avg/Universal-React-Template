@@ -1,9 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-class App extends React.PureComponent {
-	render() {
-		return <div>a divvv</div>;
-	}
-}
+const App = props => {
+	return (
+		<div>
+			<button onClick={props.handleClick}>
+				a buttttonn clicked {props.count} times
+			</button>
+		</div>
+	);
+};
+
+App.propTypes = {
+	handleClick: PropTypes.func,
+	count: PropTypes.number
+};
 
 export default App;
