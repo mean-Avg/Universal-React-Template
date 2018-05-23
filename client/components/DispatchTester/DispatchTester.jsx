@@ -2,18 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const DispatchTester = props => {
-	return (
-		<div>
-			<button onClick={props.handleClick}>{`value in store is ${
-				props.count
-			}`}</button>
-		</div>
-	);
+	return <div />;
 };
 
-DispatchTester.propTypes = {
-	handleClick: PropTypes.func,
-	count: PropTypes.number
-};
+DispatchTester.propTypes = {};
 
 export default DispatchTester;
