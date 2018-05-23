@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import DumbApp from '../../components/App';
+import DispatchTester from '../DispatchTester/DispatchTester';
 
 class App extends React.PureComponent {
 	constructor(props) {
@@ -15,8 +16,12 @@ class App extends React.PureComponent {
 		});
 	}
 	render() {
-		console.log('state', this.state);
-		return <DumbApp handleClick={this.handleClick} count={this.state.count} />;
+		return (
+			<Fragment>
+				<DumbApp handleClick={this.handleClick} count={this.state.count} />
+				<DispatchTester />
+			</Fragment>
+		);
 	}
 }
 
