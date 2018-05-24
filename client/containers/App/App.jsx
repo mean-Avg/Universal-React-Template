@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import DumbApp from '../../components/App';
 import DispatchTester from '../DispatchTester/DispatchTester';
+import TestLayout from '../TestLayout';
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -20,6 +21,7 @@ class App extends React.PureComponent {
       <Fragment>
         <DumbApp handleClick={this.handleClick} count={this.state.count} />
         <DispatchTester />
+        <TestLayout/>
       </Fragment>
     );
   }

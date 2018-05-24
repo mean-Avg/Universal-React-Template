@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack --mode development --config webpack.config.js --watch",
+    "webpack": "webpack --mode development --config webpack.config.js",
     "start": "npm run webpack && node server/server.js",
-	"prettier": "prettier --write client/**/*.js client/**/*.jsx server/*",
-	"lint": "eslint client/** server/**"
+    "prettier": "prettier --write client/**/*.js client/**/*.jsx server/*",
+    "lint": "eslint client/** server/**"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,8 @@
   },
   "homepage": "https://github.com/mean-Avg/Universal-React-Template#readme",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "react-router": "^4.2.0"
   },
   "devDependencies": {
     "babel-loader": "^7.1.4",
