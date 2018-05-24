@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack --mode none --config webpack.config.js",
+    "webpack": "webpack --mode development --config webpack.config.js --watch",
     "start": "npm run webpack && node server/server.js",
 	"prettier": "prettier --write client/**/*.js client/**/*.jsx server/*",
 	"lint": "eslint client/** server/**"
