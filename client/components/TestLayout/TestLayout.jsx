@@ -3,24 +3,28 @@ import PropTypes from 'prop-types';
 import QuestionLayout from '../QuestionLayout';
 
 const TestLayout = props => {
-  const { test, questions, testId, viewType } = props;
-  return (
-    <Fragment>
-      <h2>{test}</h2>
-      <ol>
-        {questions.map((question, index) => {
-          {return <li key={index}><QuestionLayout {...question} viewType={viewType}/></li>;}
-        })}
-      </ol>
-    </Fragment>
-  );
+  const {test, addQuestion, viewType, submitForm, questions}=props;
+    return (
+      <Fragment>
+         <h2>{test.test}</h2>
+        <form onSubmit={e=>{
+          e.preventDefault();
+          console.log(e.target.elements)
+          submitForm();
+        }}>
+        <ol>
+          {questions.map((question, index)=>{
+            return <li key={index}><QuestionLayout {...question}/></li>;
+          })}
+          </ol>
+          <button>submit</button>
+          </form>
+          <button onClick={addQuestion}>Addquestion</button>
+      </Fragment>
+    );
 };
 
 TestLayout.propTypes = {
-  test: PropTypes.string,
-  questions: PropTypes.array,
-  testId: PropTypes.string,
-  viewType: PropTypes.string
 };
 
 export default TestLayout;

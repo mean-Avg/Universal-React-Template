@@ -1,39 +1,62 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-const SelectionInput = props => {
-  const { name, isSelected, toggleSelect, value, handleText, viewType } = props;
-  switch (viewType) {
-    case 'admin':
-      return (
-        <Fragment>
-          <input
-            type="radio"
-            name={name}
-            checked={isSelected}
-            onClick={toggleSelect}
-          />
-          <span>
-            <input type="text" value={value} onChange={handleText} />
-          </span>
-        </Fragment>
-      );
-    case 'candidate':
-      return (
-        <Fragment>
-          <input
-            type="radio"
-            name={name}
-            checked={isSelected}
-            onClick={toggleSelect}
-          />
-          <span>{value}</span>
-        </Fragment>
-      );
-    default:
-      return <span>{value}</span>;
+class SelectionInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: this.props.value,
+    };
+    this.handleChange=this.handleChange.bind(this);
   }
-};
+
+  handleChange(e){
+    this.setState({
+      value: e.target.value,
+    });
+  };
+
+
+
+  render() {
+    const { value, oid, qid, viewType} = this.props;
+    switch (viewType) {
+      case 'admin':
+        return (
+          <Fragment>
+            <input
+              type="radio"
+              name={`${qid}radio`}
+              onClick={this.handleSelect}
+            />
+            <span>
+              <input
+                type="text"
+                name={oid}
+                value={this.state.value}
+                onChange={this.handleChange}
+              />
+            </span>
+          </Fragment>
+        );
+      case 'candidate':
+        return (
+          <Fragment>
+            <input
+              type="radio"
+              name={qid}
+              index={index}
+              checked={this.state.checked}
+              onClick={handleSelect}
+            />
+            <span>{value}</span>
+          </Fragment>
+        );
+      default:
+        return <span style={checked? {color:'red'}:{}}>{value}</span>;
+    }
+  }
+}
 
 SelectionInput.propTypes = {
   value: PropTypes.string,

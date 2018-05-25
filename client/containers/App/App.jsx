@@ -19,9 +19,9 @@ class App extends React.PureComponent {
   render() {
     return (
       <Fragment>
-        <DumbApp handleClick={this.handleClick} count={this.state.count} />
-        <DispatchTester />
-        <TestLayout/>
+        {/* <DumbApp handleClick={this.handleClick} count={this.state.count} /> */}
+        {/* <DispatchTester /> */}
+        <TestLayout />
       </Fragment>
     );
   }

@@ -1,34 +1,64 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import TestLayoutComponent from '../../components/TestLayout';
 
-class TestLayout extends React.PureComponent {
+import TestLayoutComponent from '../../components/TestLayout';
+import { submitTest } from './storeMods';
+
+
+import {makeQuestionArray, makeOptionsArray} from '../../utils/questionsUtil';
+
+class TestLayout extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      viewType: 'admin',
+      questions: props.test.questions
+    };
+
+    this.changeView = this.changeView.bind(this);
+    this.addQuestion = this.addQuestion.bind(this);
   }
-  render() {
-    const data = {
-      test: 'name of test',
-      questions: [{question: 'q1', options: [{value:'o1'}, {value:'o2'}, {value:'o3'}, {value:'o4'}], qid: 'dfs3'},
-      {question: 'q2', options: [{value:'o1'}, {value:'o2'}, {value:'o3'}, {value:'o4'}], qid: 'dfess3'},
-      {question: 'q3', options: [{value:'o1'}, {value:'o2'}, {value:'o3'}, {value:'o4'}], qid: 'defegfs3'},
-      {question: 'q4', options: [{value:'o1'}, {value:'o2'}, {value:'o3'}, {value:'o4'}], qid: 'ddess3'}],
-      testId: '2nd2id0',
-      viewType: ''
+
+  changeView() {
+    if (this.state.viewType === '')
+      this.setState({
+        viewType: 'admin',
+      });
+    else {
+      this.setState({
+        viewType: '',
+      });
     }
-    return <Fragment>
-      <TestLayoutComponent {...data}/>
-      </Fragment>;
+  }
+
+  addQuestion(){
+    this.setState({
+      questions: makeQuestionArray(this.state.questions, 4, makeOptionsArray)
+    })
+  }
+
+  render() {
+    return (
+      <Fragment>
+        <button onClick={this.changeView}>change view</button>
+        <TestLayoutComponent
+          {...this.props}
+          questions={this.state.questions}
+          viewType={this.state.viewType}
+          addQuestion={this.addQuestion}
+        />
+      </Fragment>
+    );
   }
 }
-// export const mapStateToProps = state => {
-//   return { count: state.count };
-// };
+export const mapStateToProps = state => {
+  return { test: state.data };
+};
 
-// export const mapDispatchToProps = dispatch => {
-//   return {
-//     handleSelect: () => dispatch(incrementAction()),
-//   };
-// };
+export const mapDispatchToProps = dispatch => {
+  return {
+    submitForm: questions => dispatch(submitTest(questions)),
+  };
+};
 
-export default connect()(TestLayout);
+export default connect(mapStateToProps, mapDispatchToProps)(TestLayout);

@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
 import { testReducer } from './containers/DispatchTester/storeMods';
+import { dataBoy } from './containers/TestLayout/storeMods';
 
 const rootReducer = combineReducers({
-  count: testReducer,
+  data: dataBoy,
 });
 
 export default rootReducer;
