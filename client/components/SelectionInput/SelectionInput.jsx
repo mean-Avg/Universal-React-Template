@@ -6,20 +6,26 @@ class SelectionInput extends React.Component {
     super(props);
     this.state = {
       value: this.props.value,
+      checked: false
     };
-    this.handleChange=this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
-  handleChange(e){
+  handleChange(e) {
     this.setState({
       value: e.target.value,
     });
-  };
+  }
 
-
+  handleSelect() {
+    this.setState({
+      checked: true,
+    });
+  }
 
   render() {
-    const { value, oid, qid, viewType} = this.props;
+    const { value, oid, qid, viewType, handleSelect, checked } = this.props;
     switch (viewType) {
       case 'admin':
         return (
@@ -27,7 +33,6 @@ class SelectionInput extends React.Component {
             <input
               type="radio"
               name={`${qid}radio`}
-              onClick={this.handleSelect}
             />
             <span>
               <input
@@ -44,26 +49,17 @@ class SelectionInput extends React.Component {
           <Fragment>
             <input
               type="radio"
-              name={qid}
-              index={index}
-              checked={this.state.checked}
-              onClick={handleSelect}
+              name={`${qid}radio`}
             />
             <span>{value}</span>
           </Fragment>
         );
       default:
-        return <span style={checked? {color:'red'}:{}}>{value}</span>;
+        return <span style={checked ? { color: 'red' } : {}}>{value}</span>;
     }
   }
 }
 
-SelectionInput.propTypes = {
-  value: PropTypes.string,
-  isSelected: PropTypes.bool,
-  toggleSelect: PropTypes.func,
-  handleText: PropTypes.func,
-  viewType: PropTypes.string,
-};
+SelectionInput.propTypes = {};
 
 export default SelectionInput;

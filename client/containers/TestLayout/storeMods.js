@@ -3,6 +3,7 @@ import data from './data.json';
 export const SUBMIT = 'submit';
 
 export function submitTest(questions) {
+  console.log('dispatched', questions);
   return { type: SUBMIT, questions };
 }
 
@@ -13,12 +14,12 @@ const initialState = {
 };
 
 export const dataBoy = (state = initialState, action) => {
-  const {type, questions}=action
+  const { type, questions } = action;
   switch (type) {
     case SUBMIT:
       return {
         ...state,
-        [questions]: questions
+        [questions]: questions,
       };
     default:
       return state;
