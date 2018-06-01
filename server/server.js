@@ -1,10 +1,19 @@
 const express = require('express');
-const path = require('path');
+const mongoose = require('mongoose');
+
+const router = require('./routes/basic');
+
+const appConfig = require('./config/appConfig');
+const dbConfig = require('./config/dbConfig');
 
 const app = express();
-const port = 3000;
 
-app.use(express.static(path.resolve(__dirname, '../dist')));
+const port = appConfig.port;
+const mongoUrl = dbConfig.mongoUrl;
+
+mongoose.connect(mongoUrl);
+
+app.use('/', router);
 
 app.listen(port, () => {
   // eslint-disable-next-line
