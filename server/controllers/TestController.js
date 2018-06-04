@@ -1,9 +1,8 @@
-const Test = require('../models/Test');
+const Test = require('../models/TestModel');
 
 const TestController = {
-
   getTest: (req, res) => {
-    Test.find({}, { _id: 0 })
+    Test.find({})
       .then(result => {
         res.json({ result });
       })
@@ -14,6 +13,7 @@ const TestController = {
 
   addTest: (req, res) => {
     var testData = new Test(req.body);
+    console.log(testData);
     testData
       .save()
       .then(item => {

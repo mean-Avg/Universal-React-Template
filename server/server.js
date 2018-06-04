@@ -43,15 +43,14 @@ app.use(jsonParser);
 app.use(urlencodedParser);
 
 //init router
-const testRouter = require('./routes/test');
+const testRouter = require('./routes/testroutes');
 
 const appConfig = require('./config/appConfig');
 
-app.get('/', (req, res) => {
-  res.send('index page');
-});
+const path = require('path');
+app.use(express.static(path.resolve(__dirname, '../dist')));
 
-app.get('/test/?:param', testRouter);
+app.use('/api/test', testRouter);
 
 const port = appConfig.port;
 
