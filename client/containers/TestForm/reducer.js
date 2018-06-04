@@ -1,21 +1,16 @@
 export const TEST_INPUT = 'test_input';
 
-export function inputToDB(value) {
-  return { type: TEST_INPUT, value };
+export function testInput(testInputs) {
+  return { type: TEST_INPUT, testInputs };
 }
 
-const initialState = {
-  testInputs: [],
-};
+const initialState = {};
 
 export const inputReducer = (state = initialState, action) => {
-  const { type, value } = action;
+  const { type, testInputs } = action;
   switch (type) {
     case TEST_INPUT:
-      return {
-        ...state,
-        [testInputs]: value,
-      };
+    return testInputs;
     default:
       return state;
   }
