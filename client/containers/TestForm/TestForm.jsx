@@ -1,7 +1,11 @@
 import React, { Fragment } from 'react';
-import TestFormComponent from '../../components/TestForm';
+import { connect } from 'react-redux';
+
 import axios from 'axios';
 import { isEmpty } from 'lodash';
+
+import TestFormComponent from '../../components/TestForm';
+import { testInput } from './reducer';
 
 class TestForm extends React.PureComponent {
   constructor(props) {
@@ -9,19 +13,15 @@ class TestForm extends React.PureComponent {
 
     this.state = {
       value: '',
-      results: [],
-      serverRes: '',
     };
+    this.res;
     this.handleChange = this.handleChange.bind(this);
-    this.populateData = this.populateData.bind(this);
-    this.handleForm = this.handleForm.bind(this);
+    this.getData = this.getData.bind(this);
+    this.handleSubmit= this.handleSubmit.bind(this);
   }
 
-  async populateData() {
-    const res = await axios.get('/api/test/get');
-    this.setState({
-      results: res.data.result,
-    });
+  componentDidMount(){
+    this.getData();
   }
 
   handleChange(e) {
@@ -30,35 +30,44 @@ class TestForm extends React.PureComponent {
     });
   }
 
-  async handleForm(e) {
+  async getData(){
+    this.res = await axios.get('/api/test/get');
+    this.props.dispatchInput(this.res.data.result);
+  }
+
+  async handleSubmit(e) {
     e.preventDefault();
-    const res = await axios.post('/api/test/add', {
+    await axios.post('/api/test/add', {
       [e.target.elements['test'].name]: e.target.elements['test'].value,
     });
-    this.setState({ value: '', serverRes: res.data });
-    this.populateData();
-    setTimeout(() => {
-      this.setState({
-        serverRes: '',
-      });
-    }, 2000);
+    this.getData();
   }
 
   render() {
+    const { testInputs } = this.props;
     return (
       <Fragment>
         <TestFormComponent
           handleChange={this.handleChange}
-          handleForm={this.handleForm}
-          res={this.state.serverRes}
+          handleSubmit={this.handleSubmit}
         />
         <ul>
-          {!isEmpty(this.state.results) &&
-            this.state.results.map(elem => <li key={elem._id}>{elem.test}</li>)}
+          {!isEmpty(testInputs) &&
+            testInputs.map(elem => <li key={elem._id}>{elem.test}</li>)}
         </ul>
       </Fragment>
     );
   }
 }
 
-export default TestForm;
+export const mapStateToProps = state => {
+  return { testInputs: state.testInputs };
+};
+
+export const mapDispatchToProps = dispatch => {
+  return {
+    dispatchInput: (res) => dispatch(testInput(res)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TestForm);
