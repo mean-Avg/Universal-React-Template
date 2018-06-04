@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import axios from 'axios';
-import { isEmpty } from 'lodash';
 
 import TestFormComponent from '../../components/TestForm';
 import { testInput } from './reducer';
@@ -50,11 +49,8 @@ class TestForm extends React.PureComponent {
         <TestFormComponent
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
+          testInputs = {testInputs}
         />
-        <ul>
-          {!isEmpty(testInputs) &&
-            testInputs.map(elem => <li key={elem._id}>{elem.test}</li>)}
-        </ul>
       </Fragment>
     );
   }
