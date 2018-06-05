@@ -24,16 +24,12 @@ class TestForm extends React.PureComponent {
 
   async handleSubmit(e) {
     e.preventDefault();
-    try {
-      await axios.post('/api/test/add', {
-        [e.target.elements['test'].name]: e.target.elements['test'].value,
-      });
-      this.setState({
-        value: '',
-      });
-    } catch (err) {
-      console.log(err);
-    }
+    await axios.post('/api/test/add', {
+      [e.target.elements['test'].name]: e.target.elements['test'].value,
+    });
+    this.setState({
+      value: ''
+    })
   }
 
   render() {

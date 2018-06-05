@@ -4,7 +4,6 @@ import { isEmpty } from 'lodash';
 
 const TestView = props => {
   const { testInputs } = props;
-  console.log(typeof testInputs, testInputs);
   return (
     <Fragment>
       <ul>
