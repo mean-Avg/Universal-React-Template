@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 import TestFormComponent from '../../components/TestForm';
-import { testInput } from './reducer';
 
 class TestForm extends React.PureComponent {
   constructor(props) {
@@ -13,14 +12,8 @@ class TestForm extends React.PureComponent {
     this.state = {
       value: '',
     };
-    this.res;
     this.handleChange = this.handleChange.bind(this);
-    this.getData = this.getData.bind(this);
-    this.handleSubmit= this.handleSubmit.bind(this);
-  }
-
-  componentDidMount(){
-    this.getData();
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
@@ -29,17 +22,18 @@ class TestForm extends React.PureComponent {
     });
   }
 
-  async getData(){
-    this.res = await axios.get('/api/test/get');
-    this.props.dispatchInput(this.res.data.result);
-  }
-
   async handleSubmit(e) {
     e.preventDefault();
-    await axios.post('/api/test/add', {
-      [e.target.elements['test'].name]: e.target.elements['test'].value,
-    });
-    this.getData();
+    try {
+      await axios.post('/api/test/add', {
+        [e.target.elements['test'].name]: e.target.elements['test'].value,
+      });
+      this.setState({
+        value: '',
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {
@@ -49,21 +43,11 @@ class TestForm extends React.PureComponent {
         <TestFormComponent
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
-          testInputs = {testInputs}
+          value={this.state.value}
         />
       </Fragment>
     );
   }
 }
 
-export const mapStateToProps = state => {
-  return { testInputs: state.testInputs };
-};
-
-export const mapDispatchToProps = dispatch => {
-  return {
-    dispatchInput: (res) => dispatch(testInput(res)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(TestForm);
+export default connect()(TestForm);

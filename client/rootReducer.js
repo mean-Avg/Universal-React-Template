@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import {inputReducer} from './containers/TestForm/reducer';
+import { inputReducer } from './containers/TestView/reducer';
 
 const rootReducer = combineReducers({
-testInputs: inputReducer,
-extras: '',
+  testInputs: inputReducer,
+  extras: '',
 });
 
 export default rootReducer;
