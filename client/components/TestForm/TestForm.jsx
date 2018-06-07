@@ -1,20 +1,20 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import { isEmpty } from 'lodash';
-
 const TestForm = props => {
-  const { handleChange, handleSubmit, testInputs} = props;
+  const { handleChange, handleSubmit, value } = props;
   return (
     <Fragment>
       <form onSubmit={handleSubmit}>
-        <input type="text" name="test" onChange={handleChange} required />
+        <input
+          type="text"
+          name="test"
+          onChange={handleChange}
+          value={value}
+          required
+        />
         <button>Submit</button>
       </form>
-      <ul>
-          {!isEmpty(testInputs) &&
-            testInputs.map(elem => <li key={elem._id}>{elem.test}</li>)}
-        </ul>
     </Fragment>
   );
 };
@@ -22,6 +22,7 @@ const TestForm = props => {
 TestForm.propTypes = {
   handleChange: PropTypes.func,
   handleSubmit: PropTypes.func,
+  value: PropTypes.string,
 };
 
 export default TestForm;

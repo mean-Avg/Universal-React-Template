@@ -4,13 +4,13 @@ export function testInput(testInputs) {
   return { type: TEST_INPUT, testInputs };
 }
 
-const initialState = {};
+const initialState = [];
 
 export const inputReducer = (state = initialState, action) => {
   const { type, testInputs } = action;
   switch (type) {
     case TEST_INPUT:
-    return testInputs;
+      return testInputs;
     default:
       return state;
   }

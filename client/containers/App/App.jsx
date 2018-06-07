@@ -1,14 +1,12 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import AppComponent from '../../components/App';
-import TestForm from '../TestForm';
 
 class App extends React.Component {
   render() {
     return (
-      <Fragment>
+      <div>
         <AppComponent />
-        <TestForm />
-      </Fragment>
+      </div>
     );
   }
 }

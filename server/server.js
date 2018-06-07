@@ -48,6 +48,7 @@ const testRouter = require('./routes/testroutes');
 const appConfig = require('./config/appConfig');
 
 const path = require('path');
+
 app.use(express.static(path.resolve(__dirname, '../dist')));
 
 app.use('/api/test', testRouter);
