@@ -28,8 +28,8 @@ class TestForm extends React.PureComponent {
       [e.target.elements['test'].name]: e.target.elements['test'].value,
     });
     this.setState({
-      value: ''
-    })
+      value: '',
+    });
   }
 
   render() {
